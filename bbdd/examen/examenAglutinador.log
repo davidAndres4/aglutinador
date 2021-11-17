@@ -1,0 +1,22 @@
+/*C3*/SET SCHEMA PUBLIC
+drop table respuesta
+drop table pregunta
+drop table autor
+CREATE TABLE IF  NOT  EXISTS autor (\u000aidAutor\u0009varchar(200)  NOT NULL  PRIMARY KEY,\u000anombre\u0009VARCHAR(200),\u000aapellido1 VARCHAR(200),\u000aapellido2 VARCHAR(200),\u000apuesto VARCHAR(200),\u000aentidadTrabajo varchar(200))
+CREATE TABLE IF  NOT  EXISTS pregunta(\u000aidPregunta TINYINT IDENTITY PRIMARY KEY,\u000adificultad VARCHAR(200),\u000aenunciado\u0009VARCHAR(200),\u000aidAutor varchar(2) NOT NULL,\u000aCONSTRAINT FK_idAutor FOREIGN KEY (idAutor) REFERENCES autor (idAutor))
+CREATE TABLE IF  NOT  EXISTS respuesta(\u000avalidez VARCHAR(200),\u000acontenido VARCHAR(200),\u000aidPregunta TINYINT,\u000aCONSTRAINT FK_idPregunta FOREIGN KEY (idPregunta) REFERENCES pregunta (idPregunta))
+INSERT INTO AUTOR VALUES('A1','Juan Antonio','Garc\u00eda','P\u00e9rez','Profesor titular','Universidad de Salamanca')
+COMMIT
+INSERT INTO AUTOR VALUES('A2','Luc\u00eda','Alc\u00e1ntara','G\u00f3mez','Profesor asociado','Universidad de Valladolid')
+COMMIT
+INSERT INTO AUTOR VALUES('A3','Julia','Hern\u00e1ndez','S\u00e1nchez','Profesor titular','Universidad de Salamanca')
+COMMIT
+INSERT INTO PREGUNTA VALUES(0,'BAJA','Indique qu\u00e9 definici\u00f3n de XML es correcta','A1')
+COMMIT
+INSERT INTO PREGUNTA VALUES(1,'MEDIA','Para definir un atributo optativo en un DTD se usa:','A1')
+COMMIT
+INSERT INTO PREGUNTA VALUES(2,'ALTA','Los procesadores SAX y DOM son independientes del lenguaje de programaci\u00f3n y existen versiones para Java, VisualBasic, C...','A2')
+COMMIT
+INSERT INTO PREGUNTA VALUES(3,'ALTA','Una sentencia try no puede estar dentro de un bloque de otra sentencia try','A2')
+COMMIT
+DISCONNECT
